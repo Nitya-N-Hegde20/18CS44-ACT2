@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Contest1 {
+
+	public static List<String> splitString(String str, char esc) {
+		List<String> sen = new ArrayList<String>();
+
+		// Your Logic goes here
+
+		String v = "";
+		for(char i: str.toCharArray()) {
+			if(i == esc) {
+				sen.add(v);
+				v = "";
+				continue;
+			}
+			v += i;
+		}
+
+		if(!(v.equals(""))) {
+			sen.add(v);
+		}
+
+		return sen;
+	}
+
+	public static void main(String[] args) {
+		String str = "My name is 'Nitya N Hegde' I am studying engineering in 'INFORMATION SCIENCE AND ENGINEERING '  ";
+
+		List<String> result = splitString(str, '\'');
+
+		for (String i : result) {
+			System.out.println(i);
+		}
+	}
+}
