@@ -1,0 +1,45 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.io.File;
+import java.util.ArrayList;
+
+public class Contest2 {
+
+	public static void removesm(String folder) {
+
+		// Your logic goes here
+
+		ArrayList<String> sm = new ArrayList<>();
+		sm.add("Claim");
+		sm.add("Rummy");
+		sm.add("Bonus");
+
+		String msg = "";
+		File files[] = (new File(folder)).listFiles();
+
+		for(File file: files) {
+			try {
+				msg = Files.readString(Paths.get(file.getAbsolutePath()));
+			
+				for(String tem: sm)
+					msg = msg.replace(tem, "");
+				
+				FileWriter fW = new FileWriter(file);
+				fW.write(msg);
+				fW.close();
+			} catch(IOException ie) {
+				ie.printStackTrace();
+			}
+		}
+
+	}
+
+	public static void main(String[] args) throws Exception {
+		String folder = "C:/somemsg";
+
+		removesm(folder);
+	}
+
+}
